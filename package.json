@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build2": "next build",
     "build": "babel src -d lib",
+    "test": "jest",
     "start": "next start",
     "lint": "next lint",
     "server": "nodemon server.js"
