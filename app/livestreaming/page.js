@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from "socket.io-client";
 var socket
-  socket = io("https://astream-live.vercel.app/");
+  socket = io("https://astream-live.vercel.app");
 
 const Page = () => {
 
