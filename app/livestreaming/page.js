@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from "socket.io-client";
 var socket
-  socket = io("https://astream-live.vercel.app");
+  socket = io("http://localhost:3001");
 
 const Page = () => {
 
@@ -78,17 +78,32 @@ const Page = () => {
 
 
     const startstream = async () => {
-      // const recorder2 = new MediaRecorder(Recorder); 
-
-      // recorder.ondataavailable = (e) => { 
-      //   if (e.data.size > 0) { 
-      //     socket.emit('start-stream', e.data);
-          
-      //   }
-      // }
-      // socket.emit('start-stream2', 'kkk');
+      
       socket.emit('start-stream', 'hhhh');
       alert('live start');
+      }
+
+      const startstream2 = async (event) => {
+
+        try {
+
+          const response = await fetch("http://localhost:3001/added-stream", {
+              method: "POST",
+              body: JSON.stringify('oooo')
+          })
+
+          if (response.ok) {
+            console.log("hhhh", response);
+              // alert('done properly'); 
+              console.log("hhhh", response);
+          }
+          console.log(response);
+      }
+
+      catch (error) {
+          console.log(error)
+      }
+      
       }
 
         // useEffect(() => {
@@ -141,40 +156,9 @@ const Page = () => {
           }
           <br/>
           <button onClick={startstream}> Live Streaming Start </button>
+          <br/>
+          <button onClick={startstream2}> Streaming Start on </button>
 
-{/* <div className="row">
-              <p className="col"><input 
-                placeholder="তারিখ"
-                type="text" 
-                value={date} 
-                required
-                onChange={(e) => setDate(e.target.value)}
-                /></p>
-              <p className="col"><select name={presente} placeholder="হাজিরা" required onChange={(e) => setPresente(e.target.value)}>
-                <option value="A">No presente</option>
-                <option value="P">Presente</option>
-                <option value="P2">P2</option>
-                <option value="P.5">P.5</option>
-                <option value="P1.5">P1.5</option>
-                <option value="P3">P3</option>
-                </select></p>
-              <p className="col"><input 
-                placeholder="টাকা"
-                type="text" 
-                value={taka} 
-                required
-                onChange={(e) => setTaka(e.target.value)}
-                /></p>
-              <p className="col"><input 
-                placeholder="ভারা টাকা"
-                type="text" 
-                value={vara} 
-                required
-                onChange={(e) => setVara(e.target.value)}
-                /></p>
-              <p className="col"><button className="btn btn-success" onClick={handleSubmit}>Add Hisab</button></p>
-            </div> */}
-            
         </div>
     );
 };
